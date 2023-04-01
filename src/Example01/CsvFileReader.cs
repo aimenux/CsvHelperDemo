@@ -12,11 +12,17 @@ public interface ICsvFileReader
 
 public class CsvFileReader : ICsvFileReader
 {
+    private readonly CsvConfiguration _csvConfiguration;
+
+    public CsvFileReader(CsvConfiguration csvConfiguration = null)
+    {
+        _csvConfiguration = csvConfiguration ?? new CsvConfiguration(CultureInfo.InvariantCulture);
+    }
+
     public async Task<ICollection<T>> GetRecordsAsync<T>(string file, CancellationToken cancellationToken)
     {
         using var reader = new StreamReader(file);
-        var config = new CsvConfiguration(CultureInfo.InvariantCulture);
-        using var csv = new CsvReader(reader, config);
+        using var csv = new CsvReader(reader, _csvConfiguration);
         var records = csv.GetRecordsAsync<T>(cancellationToken);
         return await records.ToListAsync(cancellationToken);
     }
@@ -24,8 +30,7 @@ public class CsvFileReader : ICsvFileReader
     public async Task<ICollection<T>> GetRecordsAsync<T>(string file, Type classMapType, CancellationToken cancellationToken)
     {
         using var reader = new StreamReader(file);
-        var config = new CsvConfiguration(CultureInfo.InvariantCulture);
-        using var csv = new CsvReader(reader, config);
+        using var csv = new CsvReader(reader, _csvConfiguration);
         csv.Context.RegisterClassMap(classMapType);
         var records = csv.GetRecordsAsync<T>(cancellationToken);
         return await records.ToListAsync(cancellationToken);
