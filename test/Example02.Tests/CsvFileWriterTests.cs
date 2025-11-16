@@ -1,6 +1,6 @@
 using Bogus;
 using Example02.Models;
-using FluentAssertions;
+using AwesomeAssertions;
 
 namespace Example02.Tests;
 
@@ -74,7 +74,7 @@ public class CsvFileWriterTests
         var writer = new CsvFileWriter();
 
         // act
-        await writer.WriteRecordsAsync(file, records, typeof(FooBarMap), CancellationToken.None);
+        await writer.WriteRecordsAsync<FooBar, FooBarMap>(file, records, CancellationToken.None);
 
         // assert
         File.Exists(file).Should().BeTrue();

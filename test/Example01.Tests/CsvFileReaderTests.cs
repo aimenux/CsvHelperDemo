@@ -1,5 +1,5 @@
 using Example01.Models;
-using FluentAssertions;
+using AwesomeAssertions;
 
 namespace Example01.Tests;
 
@@ -43,7 +43,7 @@ public class CsvFileReaderTests
         var reader = new CsvFileReader();
 
         // act
-        var records = await reader.GetRecordsAsync<FooBar>(file, typeof(FooBarMap), CancellationToken.None);
+        var records = await reader.GetRecordsAsync<FooBar, FooBarMap>(file, CancellationToken.None);
 
         // assert
         records.Should().NotBeNullOrEmpty().And.HaveCount(4);

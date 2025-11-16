@@ -2,17 +2,17 @@
 
 namespace Example02.Models;
 
-public class Bar
+public sealed record Bar
 {
     [Index(0)]
-    public int Id { get; set; }
+    public required int Id { get; init; }
 
     [Index(1)]
-    public string FirstName { get; set; }
+    public required string FirstName { get; init; }
     
     [Index(2)]
-    public string LastName { get; set; }
+    public required string LastName { get; init; }
     
     [Index(3)]
-    public string City { get; set; }
+    public required string City { get; init; }
 }

@@ -9,20 +9,19 @@ const string fooFile = $"{filesDirectory}/foo.csv";
 const string barFile = $"{filesDirectory}/bar.csv";
 const string foobarFile = $"{filesDirectory}/foobar.csv";
 
-var foobarConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+var cfg = new CsvConfiguration(CultureInfo.InvariantCulture)
 {
-    ShouldSkipRecord = args => int.TryParse(args.Row[0], out var index) && index % 2 != 0
+    HasHeaderRecord = true,
+    IgnoreBlankLines = true
 };
 
-await ReadFileAsync<Foo>(fooFile);
-await ReadFileAsync<Bar>(barFile);
-await ReadFileAsync<FooBar>(foobarFile, foobarConfig);
+var csvFileReader = new CsvFileReader(cfg);
 
-static async Task ReadFileAsync<T>(string file, CsvConfiguration config = null, CancellationToken cancellationToken = default)
-{
-    var csvFileReader = new CsvFileReader(config);
-    var csvRecords = await csvFileReader.GetRecordsAsync<T>(file, cancellationToken);
-    Console.WriteLine($"Found {csvRecords.Count} {typeof(T).Name.ToLower()} record(s)");
-}
+var fooRecords = await csvFileReader.GetRecordsAsync<Foo>(fooFile, CancellationToken.None);
+Console.WriteLine($"Reading '{fooRecords.Count}' record(s) of type 'Foo'");
 
+var barRecords = await csvFileReader.GetRecordsAsync<Bar>(barFile, CancellationToken.None);
+Console.WriteLine($"Reading '{barRecords.Count}' record(s) of type 'Bar'");
 
+var foobarRecords = await csvFileReader.GetRecordsAsync<FooBar, FooBarMap>(foobarFile, CancellationToken.None);
+Console.WriteLine($"Reading '{foobarRecords.Count}' record(s) of type 'FooBar'");

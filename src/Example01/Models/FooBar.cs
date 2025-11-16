@@ -2,15 +2,15 @@
 
 namespace Example01.Models;
 
-public class FooBar
+public sealed record FooBar
 {
-    public int Id { get; set; }
+    public required int Id { get; init; }
 
-    public string FirstName { get; set; }
+    public required string FirstName { get; init; }
     
-    public string LastName { get; set; }
+    public required string LastName { get; init; }
     
-    public string City { get; set; }
+    public required string City { get; init; }
 }
 
 public class FooBarMap : ClassMap<FooBar>

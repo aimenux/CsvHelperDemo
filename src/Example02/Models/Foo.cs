@@ -2,17 +2,17 @@
 
 namespace Example02.Models;
 
-public class Foo
+public sealed record Foo
 {
     [Name("IdHeader")]
-    public int Id { get; set; }
+    public required int Id { get; init; }
 
     [Name("FirstNameHeader")]
-    public string FirstName { get; set; }
+    public required string FirstName { get; init; }
     
     [Name("LastNameHeader")]
-    public string LastName { get; set; }
+    public required string LastName { get; init; }
     
     [Name("CityHeader")]
-    public string City { get; set; }
+    public required string City { get; init; }
 }

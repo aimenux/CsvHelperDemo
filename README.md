@@ -12,4 +12,4 @@ In this repo, i m using [CsvHelper](https://joshclose.github.io/CsvHelper) libra
 > :two: `Example02` is about writing csv files
 >
 >
-**`Tools`** : vs22, net 6.0, csv-helper, xunit, fluent-assertions, bogus
+**`Tools`** : net 10.0, csv-helper, xunit, awesome-assertions, bogus
