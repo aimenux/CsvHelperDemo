@@ -1,4 +1,4 @@
-[![.NET](https://github.com/aimenux/CsvHelperDemo/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/aimenux/CsvHelperDemo/actions/workflows/ci.yml)
+[![.NET](https://github.com/aimenux/CsvHelperDemo/actions/workflows/ci.yml/badge.svg)](https://github.com/aimenux/CsvHelperDemo/actions/workflows/ci.yml)
 
 # CsvHelperDemo
 ```
@@ -12,4 +12,4 @@ In this repo, i m using [CsvHelper](https://joshclose.github.io/CsvHelper) libra
 > :two: `Example02` is about writing csv files
 >
 >
-**`Tools`** : net 10.0, csv-helper, xunit, awesome-assertions, bogus
+**`Tools`** : net 10, csv-helper, xunit, awesome-assertions, bogus
